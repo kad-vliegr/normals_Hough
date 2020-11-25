@@ -1,0 +1,10 @@
+# (Note: py is a Windows executable; use python3 if using Linux)
+
+# Building
+cd normals_hough
+py -m pip install --user --upgrade setuptools wheel
+py setup.py sdist bdist_wheel
+
+
+# Installing wheel (Note: replace cp37 with installed Python version)
+py -m pip install .\dist\Hough_Normal_Estimator-0.0.0-cp37-cp37m-win_amd64.whl
