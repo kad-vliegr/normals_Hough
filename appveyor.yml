@@ -61,5 +61,7 @@ deploy:
   prerelease: false
   tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
-    branch: master                 # release from master branch only
+    branch: 
+      - master
+      - fix-windows-build
     APPVEYOR_REPO_TAG: true        # deploy on tag push only
