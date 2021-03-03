@@ -8,10 +8,20 @@ from Cython.Distutils import build_ext
 import numpy
 import platform
 
+DEBUG = False
+
+LINK_ARGS = ['-lgomp']
+
 if platform.system() == 'Windows':
   COMPILE_ARGS = ["/openmp", "/std:c11"]
+  
+  if DEBUG:
+    COMPILE_ARGS.append('/Z7')
+    LINK_ARGS.append('/DEBUG')
+  
 else:
   COMPILE_ARGS = ["-fopenmp", "-std=c++11"]
+
 
 
 setup(
@@ -26,7 +36,7 @@ setup(
         include_dirs=["third_party_includes/", numpy.get_include()],
         language="c++",
         extra_compile_args = COMPILE_ARGS,
-        extra_link_args=['-lgomp']
+        extra_link_args = LINK_ARGS
     )],
     cmdclass = {'build_ext': build_ext},
 )
