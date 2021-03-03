@@ -8,6 +8,7 @@ from Cython.Distutils import build_ext
 import numpy
 import platform
 
+VERSION = "2021.3.3"
 DEBUG = False
 
 LINK_ARGS = ['-lgomp']
@@ -39,4 +40,5 @@ setup(
         extra_link_args = LINK_ARGS
     )],
     cmdclass = {'build_ext': build_ext},
+    version=VERSION
 )
