@@ -364,7 +364,11 @@ protected:
 				triplets(i,0) = vecRandInt[pos%S]%number_of_points;
 				triplets(i,1) = vecRandInt[(pos+vecRandInt[(pos+1)%S])%S]%number_of_points;
 				triplets(i,2) = vecRandInt[(pos+vecRandInt[(pos+1+vecRandInt[(pos+2)%S])%S])%S]%number_of_points;
-				pos+=vecRandInt[(pos+3)%S]%S;
+				
+				auto new_pos = pos + vecRandInt[(pos+3)%S]%S;
+				if (new_pos == pos)
+					new_pos = (pos+1)%S;
+				pos = new_pos;
 			}while(triplets(i,0)==triplets(i,1) || triplets(i,1)==triplets(i,2) || triplets(i,2)==triplets(i,0));
 		}
 	}
